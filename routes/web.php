@@ -1,6 +1,8 @@
 <?php
 
-use App\Models\User;
+namespace App\Livewire;
+
+
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -30,3 +32,6 @@ Route::get('/', function () {
 //    \App\Models\Conversation::create();
 
 });
+
+
+Route::get("/login" , Login::class);

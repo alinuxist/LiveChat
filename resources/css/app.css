@@ -1,3 +1,67 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+
+@layer base{
+
+
+    @font-face {
+        font-family: Peyda-Thin;
+        src: url("fonts/Peyda/PeydaWeb-Thin.woff2");
+        font-display: swap;
+
+    }
+    @font-face {
+        font-family: Peyda-Light;
+        src: url("fonts/Peyda/PeydaWeb-light.woff2");
+        font-display: swap;
+
+    }
+    @font-face {
+        font-family: Peyda-ExtraLight;
+        src: url("fonts/Peyda/PeydaWeb-extralight.woff2");
+        font-display: swap;
+
+    }
+    @font-face {
+        font-family: Peyda-Regular;
+        src: url("fonts/Peyda/PeydaWeb-Regular.woff2");
+        font-display: swap;
+
+    }
+    @font-face {
+        font-family: Peyda-Medium;
+        src: url("fonts/Peyda/PeydaWeb-Medium.woff2");
+        font-display: swap;
+
+    }
+    @font-face {
+        font-family: Peyda-SemiBold;
+        src: url("fonts/Peyda/PeydaWeb-SemiBold.woff2");
+        font-display: swap;
+    }
+    @font-face {
+        font-family: Peyda-Bold;
+        src: url("fonts/Peyda/PeydaWeb-Bold.woff2");
+        font-display: swap;
+
+    }
+    @font-face {
+        font-family: Peyda-ExtraBold;
+        src: url("fonts/Peyda/PeydaWeb-ExtraBold.woff2");
+        font-display: swap;
+
+    }
+    @font-face {
+        font-family: Peyda-Black;
+        src: url("fonts/Peyda/PeydaWeb-Black.woff2");
+        font-display: swap;
+
+    }
+
+    body{
+        @apply font-Peyda;
+    }
+
+}
