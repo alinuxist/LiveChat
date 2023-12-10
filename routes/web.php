@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\User;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -14,5 +15,18 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+//    $user = User::whereId(1)->first();
+
+//    User::create([
+//        "phone" => "09907731266"
+//    ]);
+
+//    $msg = \App\Models\Message::create([
+//        "conversation_id" => 1,
+//        "sender_id" => 1,
+//    ]);
+//    dd($msg->sender());
+
+//    \App\Models\Conversation::create();
+
 });

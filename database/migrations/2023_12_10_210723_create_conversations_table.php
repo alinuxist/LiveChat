@@ -11,14 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('users', function (Blueprint $table) {
+        Schema::create('conversations', function (Blueprint $table) {
             $table->id();
-            $table->string('name')->nullable();
-            $table->string('phone' , 11)->unique();
-            $table->string("bio")->nullable();
-            $table->string("username")->unique()->nullable();
-            $table->text("profile")->nullable();
-            $table->rememberToken();
+            $table->foreignId("sender_id")->constrained("users");
+            $table->foreignId("receiver_id")->constrained("users");
+            $table->timestamp("last_time_message")->nullable();
             $table->timestamps();
         });
     }
@@ -28,6 +25,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('users');
+        Schema::dropIfExists('conversations');
     }
 };
