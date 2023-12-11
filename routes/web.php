@@ -3,6 +3,10 @@
 namespace App\Livewire;
 
 
+
+
+
+use Cryptommer\Smsir\Classes\Smsir;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -23,6 +27,8 @@ Route::get('/', function () {
 //        "phone" => "09907731266"
 //    ]);
 
+    return auth()->user();
+
 //    $msg = \App\Models\Message::create([
 //        "conversation_id" => 1,
 //        "sender_id" => 1,
@@ -31,7 +37,14 @@ Route::get('/', function () {
 
 //    \App\Models\Conversation::create();
 
-});
+})->name("home");
 
 
-Route::get("/login" , Login::class)->name("login");
+Route::get("/login" , Login::class)->middleware("guest")->name("login");
+Route::get("/logout" , [Logout::class , "logout"])->middleware("auth")->name("logout");
+
+//Route::get("/send" , function (){
+//    (new Smsir)->send()->Verify("09907731266", "100000", [new \Cryptommer\Smsir\Objects\Parameters("code", "1111")]);
+//});
+
+

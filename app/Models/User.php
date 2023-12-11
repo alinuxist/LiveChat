@@ -36,5 +36,9 @@ class User extends Authenticatable
         'remember_token',
     ];
 
+    public function otps(): HasMany{
 
+        return $this->hasMany(Otp::class);
+
+    }
 }

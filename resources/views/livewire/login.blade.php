@@ -38,7 +38,10 @@
 
 
 
-                <button type="submit" class="bg-tertiary h-10 w-64 text-secondary font-Peyda-Medium hover:scale-105 transition-all duration-300 rounded-xl">ارسال کد تایید</button>
+
+                <button type="submit" wire:loading.attr="disabled" class="bg-tertiary h-10 w-64 text-secondary font-Peyda-Medium hover:scale-105 transition-all duration-300 rounded-xl"><span wire:loading.class="animate-pulse">ارسال کد تایید</span></button>
+
+
 
 
                 <span class="text-secondary text-xs">ورود شما به معنای پذیرش قوانین <a href="#" class="text-quaternary px-0.5 font-Peyda-SemiBold">LiveChat</a> است.</span>
@@ -47,25 +50,54 @@
 
             </form>
             @else
+
                 <div class="flex mx-10">
 
                     <span class="text-secondary mt-1 mb-4">کد تایید</span>
                 </div>
+
+                <form wire:submit="verify">
                 <div class="flex flex-col space-y-5 justify-center items-center">
 
                     <div class="flex gap-x-2.5">
 
-                    <input maxlength="1" id="otp1"  type="tel" class="bg-secondary/10 items-center justify-center outline-none text-center text-secondary font-Peyda-Medium w-14 h-10 rounded-xl" dir="ltr"  onfocus="document.getElementById('otp1').value = ''"
-                           oninput="document.getElementById('otp1').previousElementSibling ? document.getElementById('otp1').previousElementSibling.focus() : document.getElementById('otp1').blur()">
-                    <input maxlength="1" id="otp2"  type="tel" class="bg-secondary/10 items-center justify-center outline-none text-center text-secondary font-Peyda-Medium w-14 h-10 rounded-xl" dir="ltr"  onfocus="document.getElementById('otp2').value = ''"
-                           oninput="document.getElementById('otp2').previousElementSibling ? document.getElementById('otp2').previousElementSibling.focus() : document.getElementById('otp2').blur()">
-                    <input maxlength="1" id="otp3"  type="tel" class="bg-secondary/10 items-center justify-center outline-none text-center text-secondary font-Peyda-Medium w-14 h-10 rounded-xl" dir="ltr"  onfocus="document.getElementById('otp3').value = ''"
-                           oninput="document.getElementById('otp3').previousElementSibling ? document.getElementById('otp3').previousElementSibling.focus() : document.getElementById('otp3').blur()">
-                    <input maxlength="1" id="otp4"  type="tel" class="bg-secondary/10 items-center justify-center outline-none text-center text-secondary font-Peyda-Medium w-14 h-10 rounded-xl" dir="ltr"  onfocus="document.getElementById('otp4').value = ''"
-                           oninput="document.getElementById('otp4').previousElementSibling ? document.getElementById('otp4').previousElementSibling.focus() : document.getElementById('otp4').blur()">
+                    <input maxlength="1" id="otp4" wire:model="otp4"  type="tel" class="bg-secondary/10 items-center justify-center outline-none text-center text-secondary font-Peyda-Medium w-14 h-10 rounded-xl" dir="ltr"  onfocus="document.getElementById('otp4').value = ''" oninput="document.getElementById('otp4').previousElementSibling ? document.getElementById('otp4').previousElementSibling.focus() : document.getElementById('otp4').blur()">
+                    <input maxlength="1" id="otp3" wire:model="otp3"  type="tel" class="bg-secondary/10 items-center justify-center outline-none text-center text-secondary font-Peyda-Medium w-14 h-10 rounded-xl" dir="ltr"  onfocus="document.getElementById('otp3').value = ''" oninput="document.getElementById('otp3').previousElementSibling ? document.getElementById('otp3').previousElementSibling.focus() : document.getElementById('otp3').blur()">
+                    <input maxlength="1" id="otp2" wire:model="otp2"  type="tel" class="bg-secondary/10 items-center justify-center outline-none text-center text-secondary font-Peyda-Medium w-14 h-10 rounded-xl" dir="ltr"  onfocus="document.getElementById('otp2').value = ''" oninput="document.getElementById('otp2').previousElementSibling ? document.getElementById('otp2').previousElementSibling.focus() : document.getElementById('otp2').blur()">
+                    <input maxlength="1" id="otp1" wire:model="otp1"  type="tel" class="bg-secondary/10 items-center justify-center outline-none text-center text-secondary font-Peyda-Medium w-14 h-10 rounded-xl" dir="ltr"  onfocus="document.getElementById('otp1').value = ''" oninput="document.getElementById('otp1').previousElementSibling ? document.getElementById('otp1').previousElementSibling.focus() : document.getElementById('otp1').blur()">
 
 
                     </div>
+
+                    @if(session()->has("loginPassError"))
+                        <div class="flex w-60 justify-center  mx-auto mb-4">
+                            <span class="text-primary tracking-tight text-center text-xs">{{session()->get("loginPassError")}}</span>
+                        </div>
+                    @endif
+
+                    @if(session()->has("repeatError"))
+                        <div class="flex w-60 justify-center  mx-auto mb-4">
+                            <span class="text-primary tracking-tight text-center text-xs">{{session()->get("repeatError")}}</span>
+                        </div>
+                    @endif
+
+                    @if(session()->has("sendError"))
+                        <div class="flex justify-center  mx-auto mb-4">
+                            <span class=" text-primary text-center text-xs">{{session()->get("sendError")}}</span>
+                        </div>
+                    @endif
+
+                    @if(session()->has("codeExpired"))
+                        <div class="flex justify-center mb-4">
+                            <span class=" text-primary text-center text-xs">{{session()->get("codeExpired")}}</span>
+                        </div>
+                    @endif
+
+                    @if(session()->has("codeWrong"))
+                        <div class="flex justify-center  mx-auto mb-4">
+                            <span class=" text-primary text-center text-xs">{{session()->get("codeWrong")}}</span>
+                        </div>
+                    @endif
 
                     <button type="submit" class="bg-tertiary h-10 w-64 text-secondary font-Peyda-Medium hover:scale-105 transition-all duration-300 rounded-xl">تایید</button>
 
@@ -73,10 +105,8 @@
                     <span class="text-secondary text-xs">ورود شما به معنای پذیرش قوانین <a href="#" class="text-quaternary px-0.5 font-Peyda-SemiBold">LiveChat</a> است.</span>
 
                 </div>
+                </form>
             @endif
-
-
-
 
         </div>
 
