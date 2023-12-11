@@ -34,4 +34,4 @@ Route::get('/', function () {
 });
 
 
-Route::get("/login" , Login::class);
+Route::get("/login" , Login::class)->name("login");
